@@ -1,0 +1,1 @@
+This Repository is one of my first android jetpack-compose project that I will be doing. This is also a practice project to get me used to creating jetpack-compose apps and preparing me for my thesis.
