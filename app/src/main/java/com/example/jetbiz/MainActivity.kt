@@ -98,7 +98,7 @@ private fun CreateInfo() {
         modifier = Modifier.padding(5.dp)
     )
     Text(
-        text = "Machine Learning Developer",
+        text = "Software Developer",
         style = MaterialTheme.typography.bodyLarge,
         color = Color.Black,
         modifier = Modifier.padding(5.dp)
