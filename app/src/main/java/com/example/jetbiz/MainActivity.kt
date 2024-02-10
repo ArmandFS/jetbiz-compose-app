@@ -82,6 +82,18 @@ fun CreateBizCard() {
                 CreateImageProfile()
                 //call divider function & add modifiers
                 CreateInfo()
+                //add button
+                Button(
+                    onClick = {
+                        Log.d("Clicked", "CreateBizCard: Clicked!")
+                    },
+                    colors = ButtonDefaults.buttonColors(containerColor = Color.Magenta),
+                ) {
+                    Text(
+                        text = "Portfolio",
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = Color.White // Set text color to match button color
+                    )
             }
         }
     }
