@@ -74,25 +74,39 @@ fun CreateBizCard() {
             elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
         ) {
             // Center the profile picture
-            Box(
+            Column(
                 modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.TopCenter
+                verticalArrangement = Arrangement.Top,
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 CreateImageProfile()
                 //call divider function & add modifiers
                 Divider()
-                Column(
-                    modifier = Modifier.padding(5.dp))
-                {
-                    Text(
-                        text = "Armand F.S",
-                        style = MaterialTheme.typography.headlineMedium,
-                        color = Color(106,41,236))
-                }
+                Text(
+                    text = "Armand F.S",
+                    style = MaterialTheme.typography.headlineMedium,
+                    color = Color(106, 41, 236),
+                    modifier = Modifier.padding(5.dp)
+                )
+                Text(
+                    text = "Machine Learning Developer",
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = Color.Black,
+                    modifier = Modifier.padding(5.dp)
+                )
+                Text(
+                    text = "@armandfs",
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = Color.Black,
+                    modifier = Modifier.padding(5.dp)
+                )
             }
         }
     }
 }
+
+
+
 @Composable
 private fun CreateImageProfile() {
     Surface(
