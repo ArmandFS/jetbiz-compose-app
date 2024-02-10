@@ -81,28 +81,34 @@ fun CreateBizCard() {
             ) {
                 CreateImageProfile()
                 //call divider function & add modifiers
-                Divider()
-                Text(
-                    text = "Armand F.S",
-                    style = MaterialTheme.typography.headlineMedium,
-                    color = Color(106, 41, 236),
-                    modifier = Modifier.padding(5.dp)
-                )
-                Text(
-                    text = "Machine Learning Developer",
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = Color.Black,
-                    modifier = Modifier.padding(5.dp)
-                )
-                Text(
-                    text = "@armandfs",
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = Color.Black,
-                    modifier = Modifier.padding(5.dp)
-                )
+                CreateInfo()
             }
         }
     }
+}
+
+//createinfo function
+@Composable
+private fun CreateInfo() {
+    Divider()
+    Text(
+        text = "Armand F.S",
+        style = MaterialTheme.typography.headlineMedium,
+        color = Color(106, 41, 236),
+        modifier = Modifier.padding(5.dp)
+    )
+    Text(
+        text = "Machine Learning Developer",
+        style = MaterialTheme.typography.bodyLarge,
+        color = Color.Black,
+        modifier = Modifier.padding(5.dp)
+    )
+    Text(
+        text = "@armandfs",
+        style = MaterialTheme.typography.bodyLarge,
+        color = Color.Black,
+        modifier = Modifier.padding(5.dp)
+    )
 }
 
 
