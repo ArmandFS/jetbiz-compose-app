@@ -39,6 +39,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.jetbiz.ui.theme.JetBizTheme
 
+
 //main activity
 class MainActivity : ComponentActivity() {
     //main entry point creation of android app
@@ -60,6 +61,10 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun CreateBizCard() {
+    //click and show portfolio button
+    val buttonClickedState = remember{
+        mutableStateOf(false)
+    }
     Surface(
         modifier = Modifier
             .fillMaxWidth()
@@ -82,10 +87,11 @@ fun CreateBizCard() {
                 CreateImageProfile()
                 //call divider function & add modifiers
                 CreateInfo()
-                //add button
                 Button(
                     onClick = {
-                        Log.d("Clicked", "CreateBizCard: Clicked!")
+                        //change button to toggle portfolio list
+                        //toggle back and forth on true and false values
+                        buttonClickedState.value = !buttonClickedState.value
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = Color.Magenta),
                 ) {
@@ -94,12 +100,70 @@ fun CreateBizCard() {
                         style = MaterialTheme.typography.bodyLarge,
                         color = Color.White // Set text color to match button color
                     )
+                }
+                if(buttonClickedState.value) {
+                    Content()
+                } else {
+                    Box (){
+                    }
+                }
             }
         }
     }
 }
 
-//createinfo function
+@Composable
+fun Content(){
+      Box(modifier = Modifier
+          .fillMaxHeight()
+          .fillMaxWidth()
+          .padding(5.dp)) {
+          Surface(modifier = Modifier
+              .padding(3.dp)
+              .fillMaxWidth()
+              .fillMaxHeight(),
+                   shape = RoundedCornerShape(corner = CornerSize(6.dp)),
+                   border = BorderStroke(width = 2.dp, color = Color.LightGray))
+          {
+              Portfolio(data = listOf("Project 1", "Project 2", "Project 3"))
+          }
+      }
+}
+
+@Composable
+fun Portfolio(data: List<String>) {
+    //add LazyColumn for scrollable and stackable lists
+    LazyColumn{
+         items(data){item ->
+             Card(
+                 modifier = Modifier
+                     .padding(13.dp)
+                     .fillMaxWidth(),
+                 shape = RectangleShape,
+                 elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+             ) {
+                 Row(
+                     modifier = Modifier
+                         .padding(8.dp)
+                         .background(color = Color.White)
+                         .padding(7.dp)
+                 ) {
+                     CreateImageProfile(modifier = Modifier.size(100.dp))
+                     Column(modifier = Modifier
+                         .padding(7.dp)
+                         .align(alignment = Alignment.CenterVertically)) {
+                         Text(text = item, fontWeight = FontWeight.Bold)
+                         Text(text = "a Machine Learning Project", style = MaterialTheme.typography.bodyMedium)
+                         }
+
+                     }
+                 }
+             }
+
+         }
+    }
+
+
 @Composable
 private fun CreateInfo() {
     Divider()
@@ -122,15 +186,10 @@ private fun CreateInfo() {
         modifier = Modifier.padding(5.dp)
     )
 }
-
-
-
 @Composable
-private fun CreateImageProfile() {
+fun CreateImageProfile(modifier: Modifier = Modifier) {
     Surface(
-        modifier = Modifier
-            .size(150.dp)
-            .padding(5.dp),
+        modifier = modifier,
         shape = CircleShape,
         border = BorderStroke(0.5.dp, Color.LightGray),
         shadowElevation = 4.dp,
@@ -138,14 +197,12 @@ private fun CreateImageProfile() {
     ) {
         // Kotlin code to put image in
         Image(
-            painter = painterResource(id = R.drawable.armandformalcircle),
+            painter = painterResource(id = R.drawable.pinkdefault),
             contentDescription = "profile image",
-            modifier = Modifier.size(125.dp)
+            modifier = Modifier.size(100.dp)
         )
     }
 }
-
-
 //default greeting preview
 @Preview(showBackground = true)
 @Composable
